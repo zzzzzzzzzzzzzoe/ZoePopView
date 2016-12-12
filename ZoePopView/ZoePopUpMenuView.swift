@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+//屏幕宽度
+let kScreenWidth = UIScreen .main.bounds.size.width
+//屏幕高度
+let kScreenHeight = UIScreen .main.bounds.size.height
 
 public protocol ZoePopUpViewDelegate:class{
     func zoeDropDownMenu(text:String, didChoose index:Int)
@@ -20,16 +24,16 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     public weak var delegate:ZoePopUpViewDelegate?
     
     public lazy var optionsList:UITableView = {
-        let table = UITableView(frame: CGRectMake(0, 64 ,kScreenWidth, 0), style: .Plain)
+        let table = UITableView(frame: CGRect(x:0, y:64 ,width:kScreenWidth, height:0), style: .plain)
         table.showsVerticalScrollIndicator = false;
         table.bounces = false
         table.delegate = self
         table.dataSource = self
         table.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
-        table.layer.borderColor = UIColor.lightGrayColor().CGColor
+        table.layer.borderColor = UIColor.lightGray.cgColor
         table.layer.borderWidth = 0.5
         table.rowHeight = 45
-        table.separatorStyle = UITableViewCellSeparatorStyle.None
+        table.separatorStyle = UITableViewCellSeparatorStyle.none
         return table
     }()
     
@@ -38,7 +42,7 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     private var blackClick : UIButton?
     
     override init(frame: CGRect) {
-        let mainFrame = CGRectMake(0, 0, kScreenWidth, kScreenHeight )
+        let mainFrame = CGRect(x:0,y: 0,width: kScreenWidth, height:kScreenHeight )
         super.init(frame: mainFrame)
         initView()
 
@@ -51,7 +55,7 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     func initView(){
         SelectIndex = 0
         blackClick = UIButton(frame:self.frame)
-        blackClick!.addTarget(self, action:  #selector(ZoePopUpMenuView.dismiss), forControlEvents: .TouchUpInside)
+        blackClick!.addTarget(self, action:  #selector(ZoePopUpMenuView.dismiss), for: .touchUpInside)
         self.addSubview(blackClick!)
         backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.addSubview(optionsList)
@@ -60,15 +64,15 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     }
     func showView(){
         optionsList.reloadData()
-        let window = UIApplication.sharedApplication().keyWindow
+        let window = UIApplication.shared.keyWindow
         window! .addSubview(self)
         self.alpha = 0
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 1
             if self.options.count>6 {
-                self.optionsList.frame = CGRectMake(0, 64, kScreenWidth, 6 * 45)
+                self.optionsList.frame = CGRect(x:0, y:64,width: kScreenWidth, height:6 * 45)
             }else{
-                self.optionsList.frame = CGRectMake(0, 64, kScreenWidth,  CGFloat(self.options.count) * 45)
+                self.optionsList.frame = CGRect(x:0, y:64, width:kScreenWidth, height: CGFloat(self.options.count) * 45)
             }
             
             }, completion: {
@@ -81,9 +85,9 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     }
     func dismissView(){
         self.alpha = 1
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 0
-            self.optionsList.frame = CGRectMake(0, 64, kScreenWidth, 0)
+            self.optionsList.frame = CGRect(x:0, y:64, width:kScreenWidth,height:0)
             }, completion: {
             finished in
                 self.removeFromSuperview()
@@ -92,36 +96,35 @@ public class ZoePopUpMenuView: UIView, UITableViewDataSource ,UITableViewDelegat
     }
     
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    @nonobjc public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "")
-        cell.selectionStyle = UITableViewCellSelectionStyle.Default
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "")
+        cell.selectionStyle = UITableViewCellSelectionStyle.default
         cell.textLabel?.text = options[indexPath.row]
-        cell.textLabel?.font = UIFont.systemFontOfSize(12)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
         if SelectIndex == indexPath.row {
             cell.backgroundColor = UIColor.init(red: 0.906, green: 0.906, blue: 0.906, alpha: 1.00)
-            cell.textLabel?.textColor = UIColor.init(hex:"35BFD3")
+//            cell.textLabel?.textColor = UIColor.init(hex:"35BFD3")
         }
-        tableView.addLineforPlainCell(cell, indexPath: indexPath, leftSpace: 0)
         return cell
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
-    
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         SelectIndex = indexPath.row
         dismissView()
-        delegate?.zoeDropDownMenu(options[indexPath.row],didChoose:indexPath.row)
+        delegate?.zoeDropDownMenu(text: options[indexPath.row],didChoose:indexPath.row)
+        
     }
-    
+   
 
 }

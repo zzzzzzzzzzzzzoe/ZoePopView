@@ -14,6 +14,7 @@
 		04B352411DFE5034005CE10A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B3523F1DFE5034005CE10A /* LaunchScreen.storyboard */; };
 		04B3524C1DFE5034005CE10A /* ZoePopViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3524B1DFE5034005CE10A /* ZoePopViewTests.swift */; };
 		04B352571DFE5034005CE10A /* ZoePopViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B352561DFE5034005CE10A /* ZoePopViewUITests.swift */; };
+		04B352681DFE5043005CE10A /* ZoePopUpMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B352651DFE5043005CE10A /* ZoePopUpMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		04B352521DFE5034005CE10A /* ZoePopViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZoePopViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B352561DFE5034005CE10A /* ZoePopViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoePopViewUITests.swift; sourceTree = "<group>"; };
 		04B352581DFE5034005CE10A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B352651DFE5043005CE10A /* ZoePopUpMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoePopUpMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		04B352351DFE5034005CE10A /* ZoePopView */ = {
 			isa = PBXGroup;
 			children = (
+				04B352651DFE5043005CE10A /* ZoePopUpMenuView.swift */,
 				04B352361DFE5034005CE10A /* AppDelegate.swift */,
 				04B352381DFE5034005CE10A /* ViewController.swift */,
 				04B3523A1DFE5034005CE10A /* Main.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				04B352391DFE5034005CE10A /* ViewController.swift in Sources */,
 				04B352371DFE5034005CE10A /* AppDelegate.swift in Sources */,
+				04B352681DFE5043005CE10A /* ZoePopUpMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +507,7 @@
 				04B3525D1DFE5034005CE10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04B3525E1DFE5034005CE10A /* Build configuration list for PBXNativeTarget "ZoePopViewTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +516,7 @@
 				04B352601DFE5034005CE10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04B352611DFE5034005CE10A /* Build configuration list for PBXNativeTarget "ZoePopViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +525,7 @@
 				04B352631DFE5034005CE10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
